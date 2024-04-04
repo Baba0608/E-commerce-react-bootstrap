@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { cartContext } from "../../context/CartContextProvider";
 
 export const Header = ({ handlers }) => {
   const { openCart } = handlers;
+  const { cartCount } = useContext(cartContext);
   return (
     <Navbar
       bg="dark"
@@ -19,7 +22,7 @@ export const Header = ({ handlers }) => {
       </Nav>
       <Nav>
         <Nav.Link className="bg-blue" onClick={openCart}>
-          Cart {0}
+          Cart {cartCount}
         </Nav.Link>
       </Nav>
     </Navbar>

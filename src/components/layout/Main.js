@@ -1,3 +1,4 @@
+import { CartContextProvider } from "../../context/CartContextProvider";
 import { Cart } from "../cart/cart";
 import { ProductContainer } from "../product/ProductContainer";
 

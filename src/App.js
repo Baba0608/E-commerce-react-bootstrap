@@ -8,6 +8,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import { Header } from "./components/layout/Header.js";
 import { Main } from "./components/layout/Main.js";
 import { useState } from "react";
+import { CartContextProvider } from "./context/CartContextProvider.js";
 
 const App = () => {
   const [cartOpen, setCartOpen] = useState(false);
@@ -19,8 +20,10 @@ const App = () => {
   };
   return (
     <>
-      <Header handlers={{ openCart }} />
-      <Main handlers={{ closeCart }} show={cartOpen} />
+      <CartContextProvider>
+        <Header handlers={{ openCart }} />
+        <Main handlers={{ closeCart }} show={cartOpen} />
+      </CartContextProvider>
     </>
   );
 };
