@@ -3,10 +3,10 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { cartContext } from "../../context/CartContextProvider";
+import { Link } from "react-router-dom";
 
-export const Header = ({ handlers }) => {
-  const { openCart } = handlers;
-  const { cartCount } = useContext(cartContext);
+export const Header = () => {
+  const { cartCount, openCart } = useContext(cartContext);
   return (
     <Navbar
       bg="dark"
@@ -16,9 +16,15 @@ export const Header = ({ handlers }) => {
       fixed="top"
     >
       <Nav>
-        <Nav.Link>Home</Nav.Link>
-        <Nav.Link>Store</Nav.Link>
-        <Nav.Link>About</Nav.Link>
+        <Nav.Link>
+          <Link to={"/"}>Home</Link>
+        </Nav.Link>
+        <Nav.Link>
+          <Link to={"/store"}>Store</Link>
+        </Nav.Link>
+        <Nav.Link>
+          <Link to={"/about"}>About</Link>
+        </Nav.Link>
       </Nav>
       <Nav>
         <Nav.Link className="bg-blue" onClick={openCart}>

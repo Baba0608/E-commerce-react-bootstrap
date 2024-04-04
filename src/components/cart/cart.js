@@ -3,12 +3,12 @@ import { CartCard } from "./CartCard";
 import { useContext } from "react";
 import { cartContext } from "../../context/CartContextProvider";
 
-export const Cart = ({ handlers, show }) => {
-  const { closeCart } = handlers;
-  const { cartItems, totalAmount } = useContext(cartContext);
+export const Cart = () => {
+  const { cartItems, totalAmount, cartOpen, closeCart } =
+    useContext(cartContext);
   return (
     <>
-      <Offcanvas show={show} onHide={closeCart} placement="end">
+      <Offcanvas show={cartOpen} onHide={closeCart} placement="end">
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>CART</Offcanvas.Title>
         </Offcanvas.Header>

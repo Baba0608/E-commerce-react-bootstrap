@@ -6,6 +6,13 @@ export const CartContextProvider = ({ children }) => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [cartCount, setCartCount] = useState(0);
   const [cartItems, setCartItems] = useState([]);
+  const [cartOpen, setCartOpen] = useState(false);
+  const openCart = () => {
+    setCartOpen(true);
+  };
+  const closeCart = () => {
+    setCartOpen(false);
+  };
   return (
     <cartContext.Provider
       value={{
@@ -15,6 +22,9 @@ export const CartContextProvider = ({ children }) => {
         setCartItems,
         totalAmount,
         setTotalAmount,
+        openCart,
+        closeCart,
+        cartOpen,
       }}
     >
       {children}

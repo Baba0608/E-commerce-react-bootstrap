@@ -8,21 +8,16 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import { Header } from "./components/layout/Header.js";
 import { Main } from "./components/layout/Main.js";
 import { useState } from "react";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { CartContextProvider } from "./context/CartContextProvider.js";
+import { About } from "./components/layout/About.js";
 
 const App = () => {
-  const [cartOpen, setCartOpen] = useState(false);
-  const openCart = () => {
-    setCartOpen(true);
-  };
-  const closeCart = () => {
-    setCartOpen(false);
-  };
   return (
     <>
       <CartContextProvider>
-        <Header handlers={{ openCart }} />
-        <Main handlers={{ closeCart }} show={cartOpen} />
+        <Header />
+        <Outlet />
       </CartContextProvider>
     </>
   );
@@ -30,4 +25,21 @@ const App = () => {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<App />);
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Main />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+    ],
+    errorElement: <Error />,
+  },
+]);
+root.render(<RouterProvider router={appRouter} />);
